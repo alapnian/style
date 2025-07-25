@@ -1,0 +1,66 @@
+@charset 'UTF-8';
+
+@use '../private/variable' as private;
+
+// -------------------------------- Functions ------------------------------- //
+
+///
+/// Returns an error message stating an issue with one or more variables.
+/// 
+/// @param  {String}                    $message        - A message describing the issue.
+/// @param  {Boolean|String<'warn'>}    $catch [false]  - Whether to catch the error or warn instead.
+/// @param  {ArgList<*>}                $names          - A list of variable names to include in the message.
+/// @return {String}                    The formatted error message stating an issue with one or more variables.
+/// 
+/// @group  API
+/// @access public
+/// 
+/// @requires   {Function}  private.variable
+/// 
+@function variable($message, $catch: false, $names...) {
+    @return private.variable($message, $catch, $names...);
+}
+
+///
+/// Alias function name of throw.variable()
+/// 
+/// @group  API
+/// @access public
+/// 
+/// @requires   {Function}  private.variable
+/// 
+@function variable-exception($message, $catch: false, $names...) {
+    @return private.variable($message, $catch, $names...);
+}
+
+// --------------------------------- Mixins --------------------------------- //
+
+///
+/// Output a message about an issue with one or more variables.
+/// 
+/// @param  {String}                    $message        - A message describing the issue.
+/// @param  {Boolean|String<'warn'>}    $catch [false]  - Whether to catch the error or warn instead.
+/// @param  {ArgList<*>}                $names          - A list of variable names to include in the message.
+/// 
+/// @output A message about an issue with one or more variables.
+/// 
+/// @group  API
+/// @access public
+/// 
+/// @requires   {Mixin}     private.variable
+/// 
+@mixin variable($message, $catch: false, $names...) {
+    @include private.variable($message, $catch, $names...);
+}
+
+///
+/// Alias mixin name of throw.variable()
+/// 
+/// @group  API
+/// @access public
+/// 
+/// @requires   {Mixin}     private.variable
+/// 
+@mixin variable-exception($message, $catch: false, $names...) {
+    @include private.variable($message, $catch, $names...);
+}

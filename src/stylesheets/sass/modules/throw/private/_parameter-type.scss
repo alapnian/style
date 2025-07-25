@@ -1,0 +1,49 @@
+@charset 'UTF-8';
+
+@use 'internal/invalid-type';
+@use 'parameter';
+
+// -------------------------------- Functions ------------------------------- //
+
+///
+/// Returns an error message for a parameter type issue.
+/// 
+/// @param  {String}                    $context        - The context in which the parameter is used.
+/// @param  {String}                    $name           - The name of the variable.
+/// @param  {*}                         $value          - The value that was checked.
+/// @param  {Boolean|String<'warn'>}    $catch [false]  - Whether to catch the error or warn instead.
+/// @param  {ArgList<*>}                $types          - A list of expected types.
+/// @return {String}                    The formatted error message for the parameter type issue.
+/// 
+/// @group  ThrowModule
+/// @access public
+/// 
+/// @requires   {Function}  invalid-type.invalid-type
+/// @requires   {Function}  parameter.parameter
+/// 
+@function parameter-type($context, $name, $value, $catch: false, $types...){
+    @return parameter.parameter(invalid-type.invalid-type($types, $value), $context, $catch, $name);
+}
+
+// --------------------------------- Mixins --------------------------------- //
+
+///
+/// Output a message for a parameter type issue.
+/// 
+/// @param  {String}                    $context        - The context in which the parameter is used.
+/// @param  {String}                    $name           - The name of the variable.
+/// @param  {*}                         $value          - The value that was checked.
+/// @param  {Boolean|String<'warn'>}    $catch [false]  - Whether to catch the error or warn instead.
+/// @param  {ArgList<*>}                $types          - A list of expected types.
+/// 
+/// @output A message for the parameter type issue.
+/// 
+/// @group  ThrowModule
+/// @access public
+/// 
+/// @requires   {Mixin}     parameter.parameter
+/// @requires   {Function}  invalid-type.invalid-type
+/// 
+@mixin parameter-type($context, $name, $value, $catch: false, $types...) {
+    @include parameter.parameter(invalid-type.invalid-type($types, $value), $context, $catch, $name);
+}

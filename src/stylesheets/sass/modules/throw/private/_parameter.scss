@@ -1,0 +1,45 @@
+@charset 'UTF-8';
+
+@use 'variable';
+
+// -------------------------------- Functions ------------------------------- //
+
+///
+/// Returns an error message for a parameter issue.
+/// 
+/// @param  {String}                    $message        - A message describing the issue.
+/// @param  {String}                    $context        - The context in which the parameter is used.
+/// @param  {Boolean|String<'warn'>}    $catch [false]  - Whether to catch the error or warn instead.
+/// @param  {ArgList<*>}                $names          - A list of variable names to include in the message.
+/// @return {String}                    The formatted error message for the parameter issue. 
+/// 
+/// @group  ThrowModule
+/// @access public
+/// 
+/// @requires   {Function}  variable.variable
+/// 
+/// 
+@function parameter($message, $context, $catch: false, $names...) {
+	@return variable.variable('#{$message} for `#{$context}()`', $catch, $names...);
+}
+
+// --------------------------------- Mixins --------------------------------- //
+
+///
+/// Output a message for a parameter issue.
+/// 
+/// @param  {String}                    $message        - A message describing the issue.
+/// @param  {String}                    $context        - The context in which the parameter is used.
+/// @param  {Boolean|String<'warn'>}    $catch [false]  - Whether to catch the error or warn instead.
+/// @param  {ArgList<*>}                $names          - A list of variable names to include in the message.
+/// 
+/// @output A message for the parameter issue.
+/// 
+/// @group  ThrowModule
+/// @access public
+/// 
+/// @requires   {Mixin}     variable.variable
+/// 
+@mixin parameter($message, $context, $catch: false, $names...) {
+    @include variable.variable('#{$message} for `#{$context}()`', $catch, $names...);
+}

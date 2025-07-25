@@ -1,0 +1,68 @@
+@charset 'UTF-8';
+
+@use '../internal/parameter-type' as private;
+
+// -------------------------------- Functions ------------------------------- //
+
+///
+/// Returns an error message for a parameter type issue.
+/// 
+/// @param  {String}                    $name           - The name of the parameter.
+/// @param  {*}                         $value          - The value that was checked.
+/// @param  {Boolean|String<'warn'>}    $catch [false]  - Whether to catch the error or warn instead.
+/// @param  {ArgList<*>}                $types          - A list of expected types.
+/// @return {String}                    The formatted error message for the parameter type issue.
+/// 
+/// @group  API
+/// @access public
+/// 
+/// @requires   {Function}  private.parameter-type
+/// 
+@function parameter-type($context, $name, $value, $catch: false, $types...) {
+    @return private.parameter-type($context, $name, $value, $catch, $types...);
+}
+
+///
+/// Alias function name of throw.parameter-type()
+/// 
+/// @group  API
+/// @access public
+/// 
+/// @requires   {Function}  private.parameter-type
+/// 
+@function parameter-type-exception($context, $name, $value, $catch: false, $types...) {
+    @return private.parameter-type($context, $name, $value, $catch, $types...);
+}
+
+// --------------------------------- Mixins --------------------------------- //
+
+///
+/// Output a message for a parameter type issue.
+/// 
+/// @param  {String}                    $name           - The name of the parameter.
+/// @param  {*}                         $value          - The value that was checked.
+/// @param  {Boolean|String<'warn'>}    $catch [false]  - Whether to catch the error or warn instead.
+/// @param  {ArgList<*>}                $types          - A list of expected types.
+/// 
+/// @output A message for the parameter type issue.
+/// 
+/// @group  API
+/// @access public
+/// 
+/// @requires   {Mixin}     private.parameter-type
+/// 
+@mixin parameter-type($context, $name, $value, $catch: false, $types...) {
+    @include private.parameter-type($context, $name, $value, $catch, $types...);
+}
+
+///
+/// Alias mixin name of throw.parameter-type()
+/// 
+/// @group  API
+/// @access public
+/// 
+/// @requires   {Mixin}     private.parameter-type
+/// 
+@mixin parameter-type-exception($context, $name, $value, $catch: false, $types...) {
+    @include private.parameter-type($context, $name, $value, $catch, $types...);
+}

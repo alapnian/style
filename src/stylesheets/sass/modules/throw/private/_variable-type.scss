@@ -1,0 +1,61 @@
+@charset 'UTF-8';
+
+@use 'sass:map';
+@use 'sass:meta';
+@use 'internal/invalid-type';
+@use 'variable';
+
+// -------------------------------- Functions ------------------------------- //
+
+/// 
+/// Returns an error message indicating that a variable is not of the expected type.
+/// 
+/// @param  {String}                    $name           - The name of the variable.
+/// @param  {*}                         $value          - The value that was checked.
+/// @param  {Boolean|String<'warn'>}    $catch [false]  - Whether to catch the error or warn instead.
+/// @param  {ArgList<*>}                $types          - A list of expected types.
+/// @return {String}                    The formatted error message what types are acceptable for a variable and the value that is misconfigured.
+/// 
+/// @group  ThrowModule
+/// @access public
+/// 
+/// @requires   {Function}  variable.variable
+/// @requires   {Function}  invalid-type.invalid-type
+/// @requires   {Function}  meta.keywords
+/// @requires   {Function}  map.has-key
+/// @requires   {Function}  map.get
+/// 
+@function variable-types($name, $value, $catch: false, $types...) {
+    $keywords: meta.keywords($type);
+    $message: if(map.has-key($keywords, 'message'), map.get($keywords, 'message'), null);
+
+	@return variable.variable(invalid-type.invalid-type($types, $value, $message), $catch, $name);
+}
+
+// --------------------------------- Mixins --------------------------------- //
+
+///
+/// Output a message indicating that a variable is not of the expected type.
+/// 
+/// @param  {String}                    $name           - The name of the variable.
+/// @param  {*}                         $value          - The value that was checked.
+/// @param  {Boolean|String<'warn'>}    $catch [false]  - Whether to catch the error or warn instead.
+/// @param  {ArgList<*>}                $types          - A list of expected types.
+/// 
+/// @output A message indicating what types are acceptable for a variable and the value that is misconfigured.
+/// 
+/// @group  ThrowModule
+/// @access public
+/// 
+/// @requires   {Mixin}     variable.variable
+/// @requires   {Function}  invalid-type.invalid-type
+/// @requires   {Function}  meta.keywords
+/// @requires   {Function}  map.has-key
+/// @requires   {Function}  map.get
+/// 
+@mixin variable-types($name, $value, $catch: false, $types...) {
+    $keywords: meta.keywords($type);
+    $message: if(map.has-key($keywords, 'message'), map.get($keywords, 'message'), null);
+
+    @include variable.variable(invalid-type.invalid-type($types, $value, $message), $catch, $name);
+}

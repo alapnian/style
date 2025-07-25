@@ -1,0 +1,40 @@
+@charset 'UTF-8';
+
+@use "../private/exception" as private;
+
+// -------------------------------- Functions ------------------------------- //
+
+///
+/// Returns an error message.
+/// 
+/// @param  {String}                    $message    - The message to throw.
+/// @param  {Boolean|String<'warn'>}    $catch      - Whether to catch the exception or not.
+/// @return {String}                    The message thrown as an exception.
+/// 
+/// @group  API
+/// @access public
+/// 
+/// @require    {Function}  private.exception
+/// 
+@function exception($message, $catch: false) {
+    @return private.exception($message, $catch);
+}
+
+// --------------------------------- Mixins --------------------------------- //
+
+///
+/// Output an error message.
+/// 
+/// @param  {String}                    $message    - The message to throw.
+/// @param  {Boolean|String<'warn'>}    $catch      - Whether to catch the exception or not.
+/// 
+/// @output An error message.
+/// 
+/// @group  API
+/// @access public
+/// 
+/// @require    {Mixin}  private.exception
+/// 
+@mixin exception($message, $catch: false) {
+    @include private.exception($message, $catch);
+}

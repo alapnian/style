@@ -1,0 +1,57 @@
+@charset 'UTF-8';
+
+@use 'parameter';
+@use 'variable';
+
+// -------------------------------- Functions ------------------------------- //
+
+///
+/// Returns an error message stating a separator variable or parameter received the wrong value.
+/// 
+/// @param  {String}                    $context        - The context of the parameter error.
+/// @param  {Boolean|String<'warn'>}    $catch [false]  - Whether to catch the error or warn instead.
+/// @return {String}                    A string describing what values are acceptable for a separator.
+/// 
+/// @group  ThrowModule
+/// @access public
+/// 
+/// @requires   {Function}  variable.variable
+/// @requires   {Function}  parameter.parameter
+/// 
+@function separator($context: null, $catch: false) {
+    $message: 'Must be "space", "comma", "slash", or "auto"';
+	$name: 'separator';
+
+    @if ($context == null) {
+        @return variable.variable($message, $catch, $name);
+    }@else{
+        @return parameter.parameter($message, $context, $catch, $name);
+    }
+}
+
+// --------------------------------- Mixins --------------------------------- //
+
+///
+/// Output an error message stating a separator variable or parameter received the wrong value.
+/// 
+/// @param  {String}                    $context        - The context of the parameter error.
+/// @param  {Boolean|String<'warn'>}    $catch [false]  - Whether to catch the error or warn instead.
+/// 
+/// @output An error message describing what values are acceptable for a separator.
+/// 
+/// @group  ThrowModule
+/// @access public
+/// 
+/// @requires   {Mixin}     variable.variable
+/// @requires   {Mixin}     parameter.parameter
+/// 
+@mixin separator($context: null, $catch: false) {
+    $message: 'Must be "space", "comma", "slash", or "auto"';
+    $name: 'separator';
+
+    @if ($context == null) {
+        @include variable.variable($message, $catch, $name);
+    }@else{
+        @include parameter.parameter($message, $context, $catch, $name);
+    }
+}

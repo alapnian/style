@@ -1,0 +1,68 @@
+@charset 'UTF-8';
+
+@use '../private/parameter' as private;
+
+// -------------------------------- Functions ------------------------------- //
+
+///
+/// Returns an error message for a parameter issue.
+/// 
+/// @param  {String}                    $message        - A message describing the issue.
+/// @param  {String}                    $context        - The context in which the parameter is used.
+/// @param  {Boolean|String<'warn'>}    $catch [false]  - Whether to catch the error or warn instead.
+/// @param  {ArgList<*>}                $names          - A list of variable names to include in the message.
+/// @return {String}                    The formatted error message for the parameter issue.
+/// 
+/// @group  API
+/// @access public
+/// 
+/// @requires   {Function}  private.parameter
+/// 
+@function parameter($message, $context, $catch: false, $names...) {
+    @return private.parameter($message, $context, $catch, $names...);
+}
+
+///
+/// Alias function name of throw.parameter()
+/// 
+/// @group  API
+/// @access public
+/// 
+/// @requires   {Function}  private.parameter
+/// 
+@function parameter-exception($message, $context, $catch: false, $names...) {
+    @return private.parameter($message, $context, $catch, $names...);
+}
+
+// --------------------------------- Mixins --------------------------------- //
+
+///
+/// Output a message for a parameter issue.
+/// 
+/// @param  {String}                    $message        - A message describing the issue.
+/// @param  {String}                    $context        - The context in which the parameter is used.
+/// @param  {Boolean|String<'warn'>}    $catch [false]  - Whether to catch the error or warn instead.
+/// @param  {ArgList<*>}                $names          - A list of variable names to include in the message.
+/// 
+/// @output A message for the parameter issue.
+/// 
+/// @group  API
+/// @access public
+/// 
+/// @requires   {Mixin}     private.parameter
+/// 
+@mixin parameter($message, $context, $catch: false, $names...) {
+    @include private.parameter($message, $context, $catch, $names...);
+}
+
+///
+/// Alias mixin name of throw.parameter()
+/// 
+/// @group  API
+/// @access public
+/// 
+/// @requires   {Mixin}     private.parameter
+/// 
+@mixin parameter-exception($message, $context, $catch: false, $names...) {
+    @include private.parameter($message, $context, $catch, $names...);
+}

@@ -1,0 +1,18 @@
+@charset 'UTF-8';
+
+@use 'sass:list';
+
+///
+/// Returns the delimiter to use when joining the items of the specified list.
+///
+/// @param  {List}      $list   - The list for which to determine a delimiter.
+/// @return {String}    The delimiter to use for the list items.
+///
+/// @group  ThrowModule
+/// @access internal
+/// 
+@function delimiter($list){
+	$separator: list.separator($list);
+
+    @return if($separator == 'space', ' ', if($separator == 'comma', ', ', ' / '));
+}

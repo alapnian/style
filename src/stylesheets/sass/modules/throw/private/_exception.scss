@@ -1,0 +1,54 @@
+@charset 'UTF-8';
+
+@use "internal/message" ;
+
+// -------------------------------- Functions ------------------------------- //
+
+///
+/// Returns an error message.
+/// 
+/// @param  {String}                    $message        - The error message to be returned.
+/// @param  {Boolean|String<'warn'>}    $catch [false]  - Whether to catch the error or warn instead.
+/// @return {String}                    The formatted error message.
+///
+/// @group  ThrowModule
+/// @access public
+///  
+@function exception($message, $catch: false) { 
+    @if $catch{
+        @if ($catch == 'warn'){
+            @warn $message;
+        }
+
+        @return $message;
+    }
+
+    @error $message;
+}
+
+// --------------------------------- Mixins --------------------------------- //
+
+///
+/// Output an error message.
+/// 
+/// @param  {String}                    $message        - The error message to be returned.
+/// @param  {Boolean|String<'warn'>}    $catch [false]  - Whether to catch the error or warn instead.
+/// 
+/// @output An error message.
+/// 
+/// @group  ThrowModule
+/// @access public
+/// 
+/// @requires   {Mixin}     message.message
+/// 
+@mixin exception($message, $catch: false) {
+    @if $catch {
+        @if ($catch == 'warn') {
+            @warn $message;
+        }
+        
+        @include message.message($message,'comments', $comment-padding: 2);
+    } 
+
+    @error $message;
+}

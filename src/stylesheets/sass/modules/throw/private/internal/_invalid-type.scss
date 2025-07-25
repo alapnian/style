@@ -1,0 +1,40 @@
+@charset 'UTF-8';
+
+@use 'sass:string';
+@use 'sass:meta';
+@use 'sass:list';
+@use 'join';
+
+/// 
+/// Returns an error message indicating that a value is not of the expected type.
+/// 
+/// @param  {List}      $types              - A list of expected types.
+/// @param  {*}         $value              - The value that was checked.
+/// @param  {String}    $additional-message - An optional additional message to include.
+/// @return {String}    - The formatted error message.
+/// 
+/// @group  ThrowModule
+/// @access internal
+/// 
+/// @requires   {Function}  list.length
+/// @requires   {Function}  list.set-nth
+/// @requires   {Function}  meta.inspect
+/// @requires   {Function}  string.unquote
+/// @requires   {Function}  join.join
+/// 
+@function invalid-type($types, $value, $additional-message: null) {
+	$length: list.length($types);
+
+	@if $length > 1 {
+		$types: list.set-nth($types, $length, 'or #{list.nth($types, $length)}');
+    }
+
+	$types: join.join($types, if($length > 2, ', ', ' '));
+	$message: '`#{meta.inspect($value)}` is not a #{string.unquote($types)}';
+
+	@if $additional-message {
+		$message: '#{$message}. #{string.unquote($additional-message)}';
+    }
+
+	@return $message;
+}

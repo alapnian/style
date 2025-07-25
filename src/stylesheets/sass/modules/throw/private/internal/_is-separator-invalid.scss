@@ -1,0 +1,14 @@
+@charset 'UTF-8';
+
+/// 
+/// Indicates whether a specified value is invalid for a separator parameter.
+/// 
+/// @param  {*}         $value  - The value which is being validated.
+/// @return {Boolean}   True if the value is invalid, false otherwise.
+/// 
+/// @group  ThrowModule
+/// @access internal
+/// 
+@function is-separator-invalid($value){
+	@return $value != space and $value != comma and $value != slash and $value != auto;
+}

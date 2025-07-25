@@ -1,0 +1,8 @@
+@charset 'UTF-8';
+
+@forward 'public/exception'         show exception;
+@forward 'public/variable'          show variable-exception;
+@forward 'public/variable-type'     show variable-type-exception;
+@forward 'public/parameter'         show parameter-exception;
+@forward 'public/parameter-type'    show parameter-type-exception;
+@forward 'public/separator'         show separator-exception;

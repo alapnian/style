@@ -1,0 +1,59 @@
+@charset 'UTF-8';
+
+@use "sass:list";
+@use "delimiter";
+
+///
+/// Concatenates all of the items in a list to a string, 
+/// separated by the list’s separator or a specified glue string. 
+/// If the list has only one item, then that item will be 
+/// returned without using the glue.
+/// 
+/// @param  {List}      $list   - The list to join.
+/// @param  {String}    $glue   - The string to separate each pair of adjacent items of the list. The value is converted to a string if necessary.
+/// @return {String} A string with all list items joined.
+/// 
+/// @group  ThrowModule
+/// @access internal
+/// 
+/// @require    {Function}  delimiter.delimiter
+/// @require    {Function}  from.join
+/// @require    {Function}  _flat
+/// 
+@function join($list, $glue: delimiter.delimiter($list)) {
+  @return from.join(_flat($list), $glue, 'list');
+}
+
+///
+/// Recursively flattens a list.
+///
+/// @param  {List}  $list   - The list to be flattened.
+/// @return {List}  Return flattened list.
+///
+/// @group  ThrowModule
+/// @access private
+/// 
+/// @require    {Function}  list.join
+/// @require    {Function}  list.length
+/// @require    {Function}  list.append
+/// @require    {Function}  list.separator
+/// 
+@function _flat($list) {
+    $result: list.join((), (), list.separator($list));
+
+        @each $item in $list {
+            @if list.length($item) > 1 {
+                $sub-list: _flat($item);
+
+                @each $sub-item in $sub-list {
+                    $result: list.append($result, $sub-item);
+                }
+            }
+
+            @else {
+                $result: list.append($result, $item);
+            }
+        }
+
+        @return $result;
+}

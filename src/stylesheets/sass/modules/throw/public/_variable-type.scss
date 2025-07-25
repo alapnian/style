@@ -1,0 +1,68 @@
+@charset 'UTF-8';
+
+@use '../private/variable-type' as private;
+
+// -------------------------------- Functions ------------------------------- //
+
+///
+/// Returns an error message indicating that a variable is not of the expected type.
+/// 
+/// @param  {String}                    $name           - The name of the variable.
+/// @param  {*}                         $value          - The value that was checked.
+/// @param  {Boolean|String<'warn'>}    $catch [false]  - Whether to catch the error or warn instead.
+/// @param  {ArgList<*>}                $types          - A list of expected types.
+/// @return {String}                    The formatted error message what types are acceptable for a variable and the value that is misconfigured.
+/// 
+/// @group  API
+/// @access public
+/// 
+/// @requires   {Function}  private.variable-types
+/// 
+@function variable-type($name, $value, $catch: false, $types...) {
+    @return private.variable-types($name, $value, $catch, $types...);
+}
+
+/// 
+/// Alias function name of throw.variable-type()
+/// 
+/// @group  API
+/// @access public
+/// 
+/// @requires   {Function}  private.variable-types
+/// 
+@function variable-type-exception($name, $value, $catch: false, $types...) {
+    @return private.variable-types($name, $value, $catch, $types...);
+}
+
+// --------------------------------- Mixins --------------------------------- //
+
+///
+/// Output a message indicating that a variable is not of the expected type.
+/// 
+/// @param  {String}                    $name           - The name of the variable.
+/// @param  {*}                         $value          - The value that was checked.
+/// @param  {Boolean|String<'warn'>}    $catch [false]  - Whether to catch the error or warn instead.
+/// @param  {ArgList<*>}                $types          - A list of expected types.
+/// 
+/// @output A message indicating what types are acceptable for a variable and the value that is misconfigured.
+/// 
+/// @group  API
+/// @access public
+/// 
+/// @requires   {Mixin}     private.variable-types
+/// 
+@mixin variable-type($name, $value, $catch: false, $types...) {
+    @include private.variable-types($name, $value, $catch, $types...);
+}
+
+///
+/// Alias mixin name of throw.variable-type()
+/// 
+/// @group  API
+/// @access public
+/// 
+/// @requires   {Mixin}     private.variable-types
+/// 
+@mixin variable-type-exception($name, $value, $catch: false, $types...) {
+    @include private.variable-types($name, $value, $catch, $types...);
+}

@@ -1,0 +1,41 @@
+@charset 'UTF-8';
+
+@use "sass:list";
+
+/// 
+/// Output a message to CSS comments or command line terminal (via debug/warn).
+/// 
+/// @param  {String}                                                    $message                - Message to output
+/// @param  {String<'comments'|'warn'|'debug'|'terminal'|'console'>}    $output ['comments']    - Type of output.
+/// @param  {Number}                                                    $comment-padding [0]    - Number of spaces to pad the comment.
+/// 
+/// @group  ThrowModule
+/// @access internal
+/// 
+/// @require    {Function}  list.index
+/// 
+@mixin message($message, $output: 'comments', $comment-padding: 0) {
+    $padding: '';
+
+    @if ($comment-padding > 0) {
+        @for $i from 1 through $comment-padding {
+            $padding: $padding + ' ';
+        }
+    }
+
+    @each $line in $message {
+        @if list.index($output, 'comments') {
+            // sass-lint:disable-line no-empty-rulesets
+
+            /* #{$pad + $line} */ // sass-lint:disable-line no-css-comments
+        }
+
+        @if list.index($output, 'debug') or list.index($output, 'terminal') or list.index($output, 'console') {
+                @debug $line; // sass-lint:disable-line no-debug
+        }
+
+        @if list.index($output, 'warn') {
+            @warn $line;
+        }
+    }
+}

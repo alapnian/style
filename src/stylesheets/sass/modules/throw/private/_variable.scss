@@ -1,0 +1,60 @@
+@charset 'UTF-8';
+
+@use 'sass:string';
+@use 'internal/join';
+@use 'internal/message';
+@use 'exception';
+
+// -------------------------------- Functions ------------------------------- //
+
+///
+/// Returns an error message stating an issue with one or more variables.
+/// 
+/// @param  {String}                    $message        - A message describing the issue.
+/// @param  {Boolean|String<'warn'>}    $catch [false]  - Whether to catch the error or warn instead.
+/// @param  {ArgList<*>}                $names          - A list of variable names to include in the message.
+/// @return {String}                    The formatted error message stating an issue with one or more variables.
+/// 
+/// @group  ThrowModule
+/// @access public
+/// 
+/// @requires   {Function}  exception.exception
+/// @requires   {Function}  join.join
+/// 
+@function variable($message, $catch: false, $names...) {
+    $names: '$' + join.join($names, ', $');
+    
+    @return exception.exception('#{$names}: #{$message}', $catch);
+}
+
+// --------------------------------- Mixins --------------------------------- //
+
+///
+/// Output a message about an issue with one or more variables.
+/// 
+/// @param  {String}                    $message        - A message describing the issue.
+/// @param  {Boolean|String<'warn'>}    $catch [false]  - Whether to catch the error or warn instead.
+/// @param  {ArgList<*>}                $names          - A list of variable names to include in the message.
+/// 
+/// @output A message about an issue with one or more variables.
+/// 
+/// @group  ThrowModule
+/// @access public
+/// 
+/// @requires   {Mixin}     message.message
+/// @requires   {Function}  join.join
+/// 
+@mixin variable($message, $catch: false, $names...) {
+    $names: '$' + join.join($names, ', $');
+    
+    @if $catch {
+        @if ($catch == 'warn') {
+            @warn '#{$names}: #{$message}';
+        }
+        
+        @include message.message('#{$names}', 'comments');
+        @include message.message('#{$message}', 'comments', $comment-padding: 2);
+    }
+
+    @error '#{$names}: #{$message}';
+}
