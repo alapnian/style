@@ -1,0 +1,74 @@
+# ############################################################ #
+#                ▄▀█ █░░ ▄▀█ █▀█ █▄░█ █ ▄▀█ █▄░█               #
+#                █▀█ █▄▄ █▀█ █▀▀ █░▀█ █ █▀█ █░▀█               #
+#                                                              #
+#      (c) Copyright 2025 Alapnian <support@alapnian.com>      #
+#                                                              #
+#             This file is part of Alapnian Style.             #
+#                                                              #
+# For the full copyright and license information, please view  #
+# the LICENSE file that was distributed with this source code. #
+# ############################################################ #
+
+
+# --------------------------------------------------------------
+# Package Manager
+# --------------------------------------------------------------
+
+# Node Package Manager
+node_modules
+package-lock.json
+
+# Yarn
+yarn-error.log
+yarn.lock
+
+# Composer
+vendor/
+composer.lock
+
+
+# --------------------------------------------------------------
+# IDE / Development Files
+# --------------------------------------------------------------
+
+# Modules Testing
+_modules/*
+
+# phpenv local config
+.php-version
+
+# GitHub
+.github/
+
+# Lint
+.eslintrc
+.stylelintrc
+
+# Jetbrains editors (PHPStorm, etc)
+.idea/
+*.iml
+
+# NetBeans
+/nbproject/
+/build/
+/nbbuild/
+/nbdist/
+/nbactions.xml
+/nb-configuration.xml
+/.nb-gradle/
+
+# Sublime Text
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+.phpintel
+/api/
+
+# Visual Studio Code
+.vscode/
+
+/results/
+/phpunit*.xml
