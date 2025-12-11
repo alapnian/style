@@ -1,0 +1,130 @@
+# ############################################################ #
+#                ▄▀█ █░░ ▄▀█ █▀█ █▄░█ █ ▄▀█ █▄░█               #
+#                █▀█ █▄▄ █▀█ █▀▀ █░▀█ █ █▀█ █░▀█               #
+#                                                              #
+#      (c) Copyright 2025 Alapnian <support@alapnian.com>      #
+#                                                              #
+#             This file is part of Alapnian Style.             #
+#                                                              #
+# For the full copyright and license information, please view  #
+# the LICENSE file that was distributed with this source code. #
+# ############################################################ #
+
+
+
+# --------------------------------------------------------------
+# Operating Specific Junk Files
+# --------------------------------------------------------------
+
+# OS X
+.DS_Store
+.DS_Store?
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+
+# OS X Thumbnails
+._*
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# Linux
+*~
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+.Trashes
+
+
+# --------------------------------------------------------------
+# Package Manager
+# --------------------------------------------------------------
+
+# Node Package Manager
+node_modules
+package-lock.json
+
+# Yarn
+yarn-error.log
+yarn.lock
+
+# Composer
+vendor/
+composer.lock
+
+
+# --------------------------------------------------------------
+# Environment Files
+# --------------------------------------------------------------
+
+.env
+.vagrant
+Vagrantfile
+
+
+# --------------------------------------------------------------
+# Test Files
+# --------------------------------------------------------------
+
+tests/coverage*
+
+
+# --------------------------------------------------------------
+# IDE / Development Files
+# --------------------------------------------------------------
+
+# Modules Testing
+_modules/*
+
+# phpenv local config
+.php-version
+
+# GitHub
+.github/
+
+# Jetbrains editors (PHPStorm, etc)
+.idea/
+*.iml
+
+# NetBeans
+/nbproject/
+/build/
+/nbbuild/
+/dist/
+/nbdist/
+/nbactions.xml
+/nb-configuration.xml
+/.nb-gradle/
+
+# Sublime Text
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+.phpintel
+/api/
+
+# Visual Studio Code
+.vscode/
+
+/results/
+/phpunit*.xml
