@@ -1,0 +1,76 @@
+{
+  "name": "@alapnian/style",
+  "version": "1.0.0",
+  "description": "A free and open-source front-end framework used for designing and developing websites. It provides a collection of ready-to-use CSS, JavaScript, and HTML that makes it easy for developers to create responsive designs and consistent displays across devices.",
+  "type": "commonjs",
+  "license": "MIT",
+  "homepage": "https://alapnian.com/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alapnian/style.git"
+  },
+  "keywords": [
+    "css",
+    "sass",
+    "responsive",
+    "front-end",
+    "framework",
+    "web",
+    "scss",
+    "html",
+    "javascript",
+    "css-framework"
+  ],
+  "main": "dist/scripts/alapnian.js",
+  "module": "dist/scripts/alapnian.esm.js",
+  "style": "dist/stylesheets/alapnian.css",
+  "sass": "src/stylesheets/alapnian.scss",
+  "config": {
+    "version_major": "1",
+    "version_minor": "1.0",
+    "version_patch": "1.0.0"
+  },
+  "files": [
+    "dist/stylesheets/*.{css,sass,scss,map}",
+    "dist/scripts/*.{js,mjs,cjs,ts,map}",
+    "src/stylesheets/*.{sass,scss}",
+    "src/scripts/index.{esm,umd}.{ts,js}"
+  ],
+  "bugs": {
+    "url": "https://github.com/alapnian/style/issues",
+    "email": "support@alapnian.com"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "npm-run-all2": "^8.0.4",
+    "sass": "^1.96.0",
+    "sass-true": "^10.0.1",
+    "stylelint": "^16.26.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Alapnian",
+    "email": "support@alapnian.com",
+    "url": "https://alapnian.com/teams"
+  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/alapnian"
+    },
+    {
+      "type": "opencollective",
+      "url": "https://opencollective.com/alapnian"
+    },
+    {
+      "type": "trakteer",
+      "url": "https://trakteer.id/alapnian"
+    },
+    {
+      "type": "saweria",
+      "url": "https://saweria.co/alapnian"
+    }
+  ]
+}
